@@ -1,0 +1,77 @@
+/************************************************************************
+	voff_sheet.css v1.07 - 20090311
+************************************************************************/
+#sheetHeader {background: url(images/sheetHeaderRight.gif) no-repeat top left; margin: 10px auto 0 auto; height: 65px; width: 900px; }
+.sheetHeaderRight {}
+#sheetTitle { font-size: .689em; float: left; height:45px; width: auto;}
+#sheetTitle h3 { font-size: 14px; display: block; line-height: 100%; margin: 0 0 0 10px; padding-top: 15px;}
+#sheetTitle h3.wide { padding-top:8px; width: 565px;} /* adaptation pour nom long */
+#headerbtn { background: url(images/greyheader_spacer.gif) no-repeat 0 0; float:right; padding-left:10px;}
+.divbuttons { float: left; font-size: .689em; line-height: 120%; margin-left: 10px; overflow: hidden; height: 45px; width:auto;}
+#sheetTitle .bg_l {margin-left: 10px;}
+#sheetTitle .bg_r {padding-right: 10;}
+.divbuttons .bg_l { background:transparent url(images/greyheader_l.gif) no-repeat 0 0; height: 45px; padding-left: 10px; }
+.divbuttons .bg_r { background:transparent url(images/greyheader_r.gif) no-repeat 100% 0; height: 45px; padding-right:10px; }
+#monog { background: url(images/icons/vidal-icon16.png) no-repeat 0 75%; display: block; padding: 9px 0 0 25px; }
+#monog.oneline { background: url(images/icons/vidal-icon16.png) no-repeat 0 100%; display: block; padding: 17px 0 0 25px; }
+#addAIM { background: url(images/icons/plus_green_btn.gif) no-repeat 0 76%; display: block; padding: 9px 0 0 25px; }
+
+#leftCol, #rightCol, #centerCol, #doubleCol { height: auto; position: relative;}
+#leftCol { float: left; margin-right: 18px;}
+#rightCol { float: right; width: 286px;}
+#centerCol { float: left; width: 286px; }
+#doubleCol { float: left; margin-bottom: 50px; width: 593px; }
+#monoWrapper { background: #fff; border: 1px solid #b4b4b4; clear: both; margin: 10px 0 0 0; padding: 10px; width: 880px; }
+
+/* MODULES */
+.moduleContent { padding: 5px 10px;}
+.moduleLeft, .moduleCenter, .moduleRight, .moduleClassif { border: 1px solid #b4b4b4; font-size: 11px; line-height: 120%; margin-bottom: 10px;}
+.moduleCenter, .moduleRight, .moduleClassif { background: #fff;}
+.moduleCenter { width: 286px; padding: 7px 0px;}
+.moduleCenter h3, .moduleRight h3, .moduleDouble h3 { background:url(images/module_header.gif); border-bottom: 1px #b3b3b3 solid; color:#666; font-size: 14px; height:30px; line-height:30px; margin:0 0 7px; text-align:center;}
+.moduleContent p { font-size: 11px; margin: .5em 0;}
+.moduleContent .warning { background:url(images/icons/stop_red.gif) no-repeat 0 0; padding-left: 22px; }
+.moduleContent ul { margin-left: 15px;font-size: 11px;}
+.moduleContent ul li { list-style: disc; }
+.moduleContent ul.warnList { margin-left: 35px;}
+.moduleLeft { background: #e5f5eb; padding: 7px 10px; width: 266px;}
+.moduleLeft p { font-size: 11px; margin: .5em 0; }
+.moduleLeft table th { text-align: left; padding: 5px 0; }
+.moduleLeft table, .moduleContent table { font-size: 11px; vertical-align: middle; width: 100%; }
+.moduleRight { width: 100%; }
+.moduleRight p { font-size: 11px; }
+div#conserv table th { color: #787878; text-align: left; width: 38%; vertical-align: text-bottom;}
+div#conserv table td { text-align: left; padding-left: 10px; vertical-align: text-bottom; }
+div#conserv img { margin: 0 5px}
+.moduleDouble { border: 1px solid #b4b4b4; margin-bottom: 10px; width: 100%; }
+.moduleDouble .gridbox_voff { border: none; width: 100%;}
+.moduleDouble table { font-size: .689em; margin-top: -7px; width: 100%;}
+.moduleDouble table tbody td { border-top: #b3b3b3 solid 1px; padding: 3px 5px;}
+.moduleDouble table thead th { color: #787878; background: #e6e6e6; padding: 5px 5px 3px 5px;}
+table#infoStat th { color: #333; font-weight: bold; width: 50%; }
+table#infoAdm th,table#infoEco th,div#infoPart table th { color: #787878; text-align: right; width: 50%; }
+table#infoAdm td,table#infoEco td,table#infoStat td { padding-left: 10px; }
+table#infoAdm th { vertical-align:middle;}
+table#infoAdm td { vertical-align: middle;}
+div#infoPart table th { padding-left: 10px; vertical-align: text-top;}
+div#infoPart table td { padding-left: 10px; vertical-align: text-top;}
+div#infoPart .picto { color: #333; font-weight: bold; }
+div#infoPart .picto img { margin-bottom: -3px; padding-right: 10px;}
+div#infoPart p strong, .subTitle { color: #787878; font-weight: bold; }
+div#infoPart p span, .moduleRight p span { color: #000; font-weight: normal; }
+.moduleClassif { }
+.moduleClassif .containerTableStyle .standartTreeRow,.moduleClassif .containerTableStyle .selectedTreeRow { font: 10px Arial, Helvetica, sans-serif; }
+div.classifTitle { background:url(images/moduleHeader40.gif) repeat-x 0 0; border-bottom: 1px #b3b3b3 solid; font-size: 10px; line-height: 14px; height:45px; margin-bottom: 7px; text-align:center;}
+div.classifTitle h3 { background: none; border: none; color:#666; font-size: 14px; margin: 0; padding-top: 7px; }
+div.classifTree { padding:0 0px 10px 0px;}
+.moduleButton { background:url(images/module_header.gif); border: 1px #b3b3b3 solid; color:#666; font-size: 11px; height:30px; line-height:30px; margin-bottom: 10px; text-align:center;}
+/*************************************
+	Adaptation style Monographie
+*************************************/
+#monoWrapper, #monoWrapper a, #monoWrapper p { color: #333; font-size: 12px; line-height: normal;  /* resoud le bug MELUSINE-188 : chevauchement de titre */   } 
+#monoWrapper table { margin: 10px 0; }
+#monoWrapper table td { padding: 3px;}
+#monoWrapper table tr { height: 2em;}
+#monoWrapper ul { margin: 2px 0 2px 20px;}
+#monoWrapper li { list-style: disc;}
+#monoWrapper h2 font font { line-height: 1.2em;}

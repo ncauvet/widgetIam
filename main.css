@@ -1,0 +1,91 @@
+body
+{
+    width: 315px;
+    height:230px;
+    margin: 0px;
+}
+
+#backgrounds {
+	background: url('./toto.png') no-repeat;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:-999;
+	opacity:100;
+
+}
+
+
+div#wrapper{
+	font-size:12px;
+}
+div#search_interaction { width:310px; height:auto;}
+div#header {
+	background:url(header.png) no-repeat;
+	height:57px;
+	width:310px;
+}
+div#pills{
+	height:19px;
+	width:19px;
+	margin-top:35px;
+	margin-left:20px;
+	position:absolute;
+}
+div#search_bar {
+	background:url(search_bar.png) no-repeat;
+	width:310px;
+	height:27px;
+}
+div#search_bar input#searchName {
+	border:none;
+	font-size:12px;
+	height:17px;
+	margin-left:22px;
+	margin-top:2px;
+	width:215px;
+	/margin-top:0px;
+	/height:14px;
+}
+div#content {
+	background:url(content.png);
+	width:310px;
+	min-height:120px;
+	height:auto;
+}
+div#content_footer {
+	background:url(footer.png) no-repeat;
+	height:28px;
+	width:310px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+div#content_footer {
+	margin-top:-10px;
+}
+}
+
+div#log div {
+	color:#be0329;
+	font-weight:bold;
+	margin-bottom:5px;
+}
+
+div#log div img {
+	cursor:pointer;
+}
+
+div#log span {
+	color:#333333;
+	font-weight:normal;
+	text-decoration:none;
+	background:url(Box_toogle.png) no-repeat;
+	width:283px;
+	height:239px;
+	position:absolute;
+	left:234px;
+	padding-left:55px
+}
+
+  
+ 

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="MSThemeCompatible" CONTENT="yes">
+		
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+
+<link href="main.css" rel="stylesheet" type="text/css">
+<link href="jquery-ui-1.8.1.custom.css" rel="stylesheet" type="text/css">		
+
+<script type="text/javascript" charset="utf-8" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jatom.js"></script> 
+<script type="text/javascript" charset="utf-8" src="js/jfeed.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jfeeditem.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jrss.js"></script> 
+<script type="text/javascript" charset="utf-8" src="js/search.js"></script> 
+<script type="text/javascript" charset="utf-8" src="js/jquery-ui-1.8.1.custom.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.ui.core.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.ui.position.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.ui.widget.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.blockUI.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+ 
+			
+		//var ns = new IamAnalyze("iamContainer");
+
+		var np = new SearchContainer("searchName","iamContainer");
+	
+		$('#reset').click(function() {
+		$("#log").html("");
+		$("#newswrapper").html("");
+		});
+		
+
+
+ $('#test').click(function() { 
+            $.blockUI({ message: $('#question'), css: { width: '275px' } }); 
+        }); 
+ 
+        $('#yes').click(function() { 
+            // update the block message 
+            $.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
+ 
+            $.ajax({ 
+                url: 'wait.php', 
+                cache: false, 
+                complete: function() { 
+                    // unblock when remote call returns 
+                    $.unblockUI(); 
+                } 
+            }); 
+        }); 
+ 
+        $('#no').click(function() { 
+            $.unblockUI(); 
+            return false; 
+        }); 
+	
+		});
+</script>
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="header">
+    	<div id="pills"><img src="pill_red.png" alt="red pills" height="19" width="19" border="0"/></div>
+    </div>
+    <div id="search_bar">
+    	<div class="ui-widget">
+        	<input id="searchName" border="0">	
+        </div>
+    </div>
+    <div id="content" class="ui-widget">
+		<div id="log" class="ui-widget-content">
+        </div>
+  	</div>
+	
+<button id="demo1">play</button>
+<input id="test" type="submit" value="Show Dialog" /> 	
+	
+</div>
+	<div id="iamContainer" style="display:none;width:400;">Compute IAM</div>
+<div id="question" style="display:none; cursor: default"> 
+        <h1>Would you like to contine?.</h1> 
+        <input type="button" id="yes" value="Yes" /> 
+        <input type="button" id="no" value="No" /> 
+</div> 
+</body>
+</html>
