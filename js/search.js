@@ -1,5 +1,7 @@
 var server="http://apirest-dev.vidal.fr//rest/api/";
 var api_key="JHGJHUIYTF277";
+var app_key="PUT youy APi key here";//register on https://vidal.3scale.net/ 
+var app_id="PUT youy application id key here";//register on https://vidal.3scale.net/
 
 function displayFeed(container, feed) {
     var newsFound = false;
@@ -30,8 +32,8 @@ function computeIam(id){
 	//var concatid ="http://172.16.50.184:8080/rest/rest/interactions/products/";
 	var concatid =server+"alerts?";
 	$("#ordoList li").each( function() {concatid += "productId="+$(this).attr("id")+'&&';});
-	//IamAnalyze(concatid + "?api_key="+api_key);
-	IamAnalyze(concatid);
+	IamAnalyze(concatid + "app_key="+app_key+"&&app_id="+app_id);
+	//IamAnalyze(concatid);
 }
 function deleteProduct(id){
 	$("#"+id).remove();
@@ -159,7 +161,7 @@ $('#'+container).autocomplete({
 		source:function(request, response) {
 		jQuery.getFeed( {
 	//	url : "http://172.16.50.184:8080/rest/rest/products?q="+request.term+"&&api_key=JHGJHUIYTF277",
-		url : server+"products?q="+request.term+"&&api_key="+api_key,
+		url : server+"products?q="+request.term+"&&app_key="+app_key+"&&app_id="+app_id,
 		success : function(data) { 
 			//var feed = new JFeed(data);
 			//alert(feed);
