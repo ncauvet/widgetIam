@@ -1,4 +1,4 @@
-var server="http://Pc-ncauvet:8080/rest/rest/";
+var server="http://apirest-dev.vidal.fr//rest/api/";
 var api_key="JHGJHUIYTF277";
 
 function displayFeed(container, feed) {
@@ -28,9 +28,10 @@ function log(message,id) {
 		}
 function computeIam(id){
 	//var concatid ="http://172.16.50.184:8080/rest/rest/interactions/products/";
-	var concatid =server+"interactions/products/";
-	$("#ordoList li").each( function() {concatid += $(this).attr("id")+',';});
-	IamAnalyze(concatid + "?api_key="+api_key);
+	var concatid =server+"alerts?";
+	$("#ordoList li").each( function() {concatid += "productId="+$(this).attr("id")+'&&';});
+	//IamAnalyze(concatid + "?api_key="+api_key);
+	IamAnalyze(concatid);
 }
 function deleteProduct(id){
 	$("#"+id).remove();
@@ -160,12 +161,15 @@ $('#'+container).autocomplete({
 	//	url : "http://172.16.50.184:8080/rest/rest/products?q="+request.term+"&&api_key=JHGJHUIYTF277",
 		url : server+"products?q="+request.term+"&&api_key="+api_key,
 		success : function(data) { 
-			
-						response($.map(data.items, function(item) {
-							return {
-								label: item.links[0].title ,
-								value: item.links[0].title,
-								id :(item.links[0].href.split('/'))[4]
+			//var feed = new JFeed(data);
+			//alert(feed);
+						response($.map(data.items, function(item) {	
+						//alert((item.id.split('/'))[3]);
+						return {
+							//
+								label: item.summary ,
+								value: item.summary,
+								id :(item.id.split('/'))[3]
 							}
 						}))}						})
     },minLength: 3,
@@ -198,60 +202,60 @@ function displayNews(feed) {
         	news = feed.items;
         for ( var i in news) {
     var n = news[i];
-    
-    var riskComment = n.links[0].title;
-	var productIda = (n.links[1].href.split('/'))[4];
-	var productIdb = (n.links[2].href.split('/'))[4];
-	var productAname = n.links[1].title;
-	var productBname = n.links[2].title;
+    if(n.categories[0].term == 'ALERT' && n.type=="DRUG_INTERACTION"){
+		//alert(n.title);
 	
-	var interactionAname = n.links[3].title;
-	var interactionBname = n.links[4].title;
+    var riskComment = n.content;
+	var productIda = (n.id.split('/'))[4];
+	var productIdb = (n.id.split('/'))[5];
+	var title = n.title;
 	
-	var iamId = (n.links[0].href.split('/'))[4];
-	var gravity = n.categories[0].term;
+	
+	var interactionAname ="int a"; 
+	var interactionBname ="int B";
+	
+	var iamId = (n.id.split('/'))[3];
+	var gravity = n.gravity;//n.categories[0].term;
 		
-	addPills(productIda,productIdb,productAname,productBname,iamId,gravity);
-	addComment(iamId,n.summary,productAname,productBname,interactionAname,interactionBname,gravity,riskComment);
-	
+	addPills(productIda,productIdb,title,iamId,gravity);
+	addComment(iamId,gravity,riskComment,title);
+	}
         	}
         }
     }
 
 }
-function addPills(productIdA,productIdB,productNameA,productNameB,iamId,gravity){
+
+function addPills(productIdA,productIdB,title,iamId,gravity){
 var gravityPictog = gravityPicto(gravity);
-var html = "<img class='pills' id='img-"+iamId+"-"+productIdA+"-"+productIdB+"' src='"+gravityPictog+"' onclick='jQuery.ordonanceShowAIM(\"i100"+iamId+"\");jQuery.toggleAIMLink();return false;'/>"+productNameA +" / "+productNameB;
+var html = "<img class='pills' id='img-"+iamId+"-"+productIdA+"-"+productIdB+"' src='"+gravityPictog+"' onclick='jQuery.ordonanceShowAIM(\"i100"+iamId+"\");jQuery.toggleAIMLink();return false;'/>"+title;
 $("<div id='iamline-"+iamId+"-"+productIdA+"-"+productIdB+"'/>").html(html).prependTo("#AIMlist");
 }
 
 function gravityPicto(gravity){
 var gravityPicto="";
 
-if(gravity == "CONTRAINDICATIONS"){
+if(gravity == "LEVEL_4"){
 	gravityPicto="picto_interaction40.gif";
 }
-else if(gravity == "DISADVISES_ASSOCIATION"){
+else if(gravity == "LEVEL_3"){
 gravityPicto="picto_interaction30.gif";
 }
-else if(gravity == "PRECAUTION_USE"){
+else if(gravity == "LEVEL_2"){
 gravityPicto="picto_interaction30.gif";
 }
-else if(gravity == "TAKE_INTO_ACCOUNT"){
+else if(gravity == "LEVEL_1"){
 gravityPicto="picto_interaction_vert.gif";
 }
 return gravityPicto;
 
 }
 
-function addComment(iamId,comment,productNameA,productNameB,interactionNameA,interactionNameB,gravity,riskComment){
+function addComment(iamId,gravity,riskComment,title){
   var html ='<table><tbody><tr><td class="AIMheader"><div class="">Int&#233ractions :</div>'+
-  '<ul><li class="interaction10">'+productNameA+'<br/><span>'+interactionNameA+'</span>'+
-  '</li><li class="interaction10">'+productNameB+'<br/><span>'+interactionNameB+'</span></li></ul>'+
+  '<ul><li class="interaction10">'+title+'</ul>'+
   '</td></tr><tr><td class="info1"><span class="boldItem">Niveau de gravit&#233 :</span><img src="./'+gravityPicto(gravity)+'"/><span class="alert40">'+gravity+'</span>'+
-  '</td></tr><tr><td class="info1">'+
-  '<span class="boldItem">Nature du risque :</span>'+riskComment+'</td></tr><tr><td class="info2"><span class="boldItem">Conduite &#224 tenir :</span>'
-  +comment+'</td></tr></tbody></table>';
+  '</td></tr><tr><td class="info1">'+riskComment+'</td></tr></tbody></table>';
 
 $('<div id="i100'+iamId+'" class="AIMcontent"/>').html(html).insertAfter("#AIMnav");
 
@@ -305,8 +309,8 @@ jQuery.getFeed = function(options) {
         $.ajax({
             type: 'GET',
             url: options.url,
-			jsonp:'callback-function',
-            dataType: 'jsonp',
+			//jsonp:'callback-function',
+            //dataType: 'jsonp',
 			scriptCharset: "utf-8",
 			contentType: "application/x-javascript; charset=utf-8",
             success: function(data,textStatus) {

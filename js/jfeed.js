@@ -19,8 +19,8 @@ jQuery.getFeed = function(options) {
         $.ajax({
             type: 'GET',
             url: options.url,
-			jsonp:'callback-function',
-            dataType: 'jsonp',
+			//jsonp:'callback-function',
+            //dataType: 'jsonp',
 			scriptCharset: "utf-8",
 			contentType: "application/x-javascript; charset=utf-8",
             success: function(data,textStatus) {
@@ -128,7 +128,7 @@ JAtom.prototype = {
         
             var item = new JFeedItem();
             
-            item.title = jQuery('',this).eq(0).text();
+            item.title = jQuery('title',this).eq(0).text();
 			
             item.published = jQuery(this).find('published').eq(0).text();
             item.link = jQuery(this).find('link').eq(0).attr('href');
@@ -137,7 +137,9 @@ JAtom.prototype = {
             item.updated = jQuery(this).find('updated').eq(0).text();
             item.id = jQuery(this).find('id').eq(0).text();
             item.summary = jQuery(this).find('summary').eq(0).text();
-
+			item.content = jQuery(this).find('content').eq(0).text();
+			item.type = jQuery(this).find('type').eq(0).text();
+			item.gravity = jQuery(this).find('severity').eq(0).text();
             item.categories = new Array();
 	        jQuery('category', this).each( function() {
 	            	var category = {scheme:jQuery(this).attr('scheme'), term:jQuery(this).attr('term')};
@@ -168,7 +170,10 @@ JFeedItem.prototype = {
     published: '',
     categories: '',
     links: '',
-    summary: ''
+    summary: '',
+	content: '',
+	type: '',
+	gravity: ''
 };
 
 

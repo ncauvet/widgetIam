@@ -16,19 +16,52 @@
 <script type="text/javascript" charset="utf-8" src="js/search.js"></script> 
 <script type="text/javascript" charset="utf-8" src="js/jquery-ui-1.8.1.custom.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/jquery.blockUI.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jfeed.js"></script> 
 
 
 
 <script type="text/javascript">
 	$(document).ready(function(){		
 		var np = new VidalIamWidget();
+		$('#reset').click(function() {
+		$("#log").html("");
+		$("#newswrapper").html("");
+		});
+		
+		$('#test').click(function() { 
+            $.blockUI({ message: $('#question'), css: { width: '275px' } }); 
+        }); 
+ 
+        $('#yes').click(function() { 
+            // update the block message 
+            $.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
+ 
+            $.ajax({ 
+                url: 'wait.php', 
+                cache: false, 
+                complete: function() { 
+                    // unblock when remote call returns 
+                    $.unblockUI(); 
+                } 
+            }); 
+        }); 
+ 
+        $('#no').click(function() { 
+            $.unblockUI(); 
+            return false; 
+        }); 
+	
 		});
 </script>
 </head>
 
 <body>
-<div id="vidal_iam_widget"></div>
-
+	<div id="vidal_iam_widget"></div>
+<div id="question" style="display:none; cursor: default"> 
+        <h1>Would you like to contine?.</h1> 
+        <input type="button" id="yes" value="Yes" /> 
+        <input type="button" id="no" value="No" /> 
+</div> 
 
 </body>
 </html>
